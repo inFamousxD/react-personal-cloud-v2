@@ -1,12 +1,18 @@
 import { Card, CardContent, Typography } from '@mui/material'
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 
 const Note = () => {
+	const navigate = useNavigate();
+	const handleOpenNote = () => {
+		navigate('/notes/note-id')
+	}
+
 	return (
 		<React.Fragment>
 			<Card sx={{
-				margin: '2vh 3.5vw 0vh 3.5vw',
-			}}>
+				margin: '2vh 3.5vw 0vh 3.5vw'
+			}} onClick={handleOpenNote}>
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="div">
 						Lizard
