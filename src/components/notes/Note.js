@@ -2,24 +2,23 @@ import { Card, CardContent, Typography } from '@mui/material'
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 
-const Note = () => {
+const Note = ({ data, folderName }) => {
 	const navigate = useNavigate();
 	const handleOpenNote = () => {
-		navigate('/notes/note-id')
+		navigate('/notes/' + folderName + '/' + data.id)
 	}
 
 	return (
 		<React.Fragment>
 			<Card sx={{
-				margin: '2vh 3.5vw 0vh 3.5vw'
+				m: 2
 			}} onClick={handleOpenNote}>
 				<CardContent>
-					<Typography gutterBottom variant="h5" component="div">
-						Lizard
+					<Typography gutterBottom variant="h6" component="div">
+						{data.content.title.length >= 50 ? data.content.title.substring(0, 50) + '...' : data.content.title}
 					</Typography>
 					<Typography variant="body2" color="text.secondary">
-						Lizards are a widespread group of squamate reptiles, with over 6,000
-						species, ranging across all continents except Antarctica
+						{data.content.body.length >= 150 ? data.content.body.substring(0, 150) + '...' : data.content.body}
 					</Typography>
 				</CardContent>
 			</Card>
