@@ -8,10 +8,14 @@ import { useLocation } from 'react-router-dom';
 import { Grain } from '@mui/icons-material';
 
 const Breadcrumb = () => {
+	// const [location, setLocation] = React.useState('');
+
 	const location = useLocation().pathname.split('/');
-	location.shift();
-	location.length > 3 ? location.length = 3 : console.log('');
-	if (location.length === 3 && location[2].length > 5) location[2] = location[2].substring(0, 4).concat('...');
+	const locationCleanup = () => {
+		location.shift();
+		if (location.length > 3) location.length = 3
+		if (location.length === 3 && location[2].length > 7) location[2] = location[2].substring(0, 6).concat('...');
+	}
 
 	const generateURL = (index) => {
 		let URL = '';
@@ -21,13 +25,13 @@ const Breadcrumb = () => {
 		return URL;
 	}
 
-	console.log(generateURL(3))
-
 	const icons = [
 		FolderIcon,
 		StickyNote2Icon,
 		Grain
 	]
+
+	locationCleanup();
 
 	return (
 		<React.Fragment>
