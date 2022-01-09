@@ -20,13 +20,13 @@ const Breadcrumb = () => {
 	return (
 		<React.Fragment>
 			<Breadcrumbs sx={{ margin: '2vh' }}>
-				<Link href='/#/home' sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
+				<Link href={process.env.PUBLIC_URL + '/#/home'} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
 					<HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" /> {'home'}
 				</Link>
 
 				{ location[0] !== 'home' && location[0] !== "" && location.map((node, index) => {
 						const Icon = icons[index];
-						return index !== (location.length-1) ? <Link key={index} href={`/#/${node}`} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
+						return index !== (location.length-1) ? <Link key={index} href={`${process.env.PUBLIC_URL}/#/${node}`} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
 										<Icon sx={{ mr: 0.5 }} fontSize="inherit" /> {node}
 									</Link> :
 									<Typography key={index} sx={{ display: 'flex', alignItems: 'center' }} color='text.primary'>
