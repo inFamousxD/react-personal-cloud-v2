@@ -11,6 +11,8 @@ const Note = ({ data, folderName }) => {
 	return (
 		<React.Fragment>
 			<Card sx={{
+				cursor: 'pointer',
+				width: '92vw',
 				m: 2
 			}} onClick={handleOpenNote}>
 				<CardContent>
