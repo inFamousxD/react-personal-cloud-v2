@@ -1,3 +1,5 @@
+import { CircularProgress } from '@mui/material';
+import { Box } from '@mui/system';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import React from 'react'
@@ -28,11 +30,13 @@ const NotesList = () => {
 	});
 
 	return (
-		<div>
+		!loading ? <div>
 			{ !loading && data[0] && data.map(noteData => {
 				return <Note key={noteData.createdAt} data={noteData} folderName={folderName} />
 			}) }
-		</div>
+		</div> : <Box sx={{ display: 'flex' }}>
+      <CircularProgress color='secondary' />
+    </Box>
 	)
 }
 

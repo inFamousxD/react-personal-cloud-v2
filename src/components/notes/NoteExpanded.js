@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardContent, CircularProgress, Typography } from '@mui/material'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import React from 'react'
@@ -23,7 +23,7 @@ const NoteExpanded = () => {
 		}
 	})
 	return (
-		!loading && <div>
+		!loading ? <div>
 			<Card sx={{
 				width: '92vw',
 				height: '82vh',
@@ -38,7 +38,9 @@ const NoteExpanded = () => {
 					</Typography>
 				</CardContent>
 			</Card>
-		</div>
+		</div> : <Box sx={{ display: 'flex' }}>
+      <CircularProgress color='secondary' />
+    </Box>
 	)
 }
 

@@ -1,3 +1,5 @@
+import { CircularProgress } from '@mui/material'
+import { Box } from '@mui/system'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs } from 'firebase/firestore'
 import React from 'react'
@@ -23,12 +25,14 @@ const NotesDashboard = () => {
 	})
 
 	return (
-		<div>
+		!loading ? <div>
 			<FolderDrawer />
 			{ !loading && folders.map((folder, index) => {
 				return <Folder key={index} folderName={folder} />
 			}) }
-		</div>
+		</div> : <Box sx={{ display: 'flex' }}>
+      <CircularProgress color='secondary' />
+    </Box>
 	)
 }
 
