@@ -20,7 +20,7 @@ const Breadcrumb = () => {
 	return (
 		<React.Fragment>
 			<Breadcrumbs sx={{ margin: '2vh' }}>
-				<Link href='/home' sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
+				<Link href='/#/home' sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
 					<HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" /> {'home'}
 				</Link>
 
