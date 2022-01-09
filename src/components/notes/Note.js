@@ -1,6 +1,7 @@
 import { Card, CardContent, Typography } from '@mui/material'
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import FolderDrawer from './FolderDrawer';
 
 const Note = ({ data, folderName }) => {
 	const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Note = ({ data, folderName }) => {
 
 	return (
 		<React.Fragment>
+			<FolderDrawer />
 			<Card sx={{
 				cursor: 'pointer',
 				width: '92vw',

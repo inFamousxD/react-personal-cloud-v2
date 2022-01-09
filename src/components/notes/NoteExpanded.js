@@ -4,6 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { db } from '../../firebase/firebase-config';
+import FolderDrawer from './FolderDrawer';
 
 const NoteExpanded = () => {
 	const location = useLocation().pathname.split('/');
@@ -24,6 +25,7 @@ const NoteExpanded = () => {
 	})
 	return (
 		!loading ? <div>
+			<FolderDrawer />
 			<Card sx={{
 				width: '92vw',
 				height: '82vh',
