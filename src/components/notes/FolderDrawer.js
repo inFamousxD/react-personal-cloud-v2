@@ -1,6 +1,5 @@
 import Folder from '@mui/icons-material/Folder';
-import { CircularProgress, Divider, Link, List, ListItem, SwipeableDrawer, Typography } from '@mui/material'
-import { Box } from '@mui/system';
+import { Divider, Link, List, ListItem, SwipeableDrawer, Typography } from '@mui/material'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import React from 'react'
@@ -31,7 +30,7 @@ const FolderDrawer = () => {
 	})
 
 	return (
-		!loading ? <div>
+		<div>
 			<SwipeableDrawer anchor='right' open={open} onClose={() => toggleDrawer(false)} onOpen={() => toggleDrawer(true)}>
 				<List sx={{ bgcolor: 'background.paper', minWidth: '70vw', minHeight: '100vh', fontFamily: 'Quicksand' }}>
 					<ListItem sx={{ marginBottom: '2vh' }}>
@@ -48,9 +47,7 @@ const FolderDrawer = () => {
 					}) }
 				</List>
 			</SwipeableDrawer>
-		</div> : <Box sx={{ display: 'flex' }}>
-      <CircularProgress color='secondary' />
-    </Box>
+		</div>
 	)
 }
 
