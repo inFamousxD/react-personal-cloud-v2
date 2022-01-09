@@ -19,7 +19,7 @@ function MyApp() {
 
   return (
 		<React.Fragment>
-			<Router basename={process.env.PUBLIC_URL}>
+			<Router>
 				<Box sx={{ width: '100vw', minHeight: '7vh', display: 'flex', flexDirection: 'column', bgcolor: '#222', position: 'sticky', top: '0'}}>
 					<Breadcrumb />
 				</Box>
