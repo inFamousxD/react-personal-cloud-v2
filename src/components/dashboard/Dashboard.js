@@ -1,9 +1,10 @@
 import React from 'react'
+import SignIn from './SignIn'
 
 const Dashboard = () => {
 	return (
 		<div>
-			Hi!
+			<SignIn />	
 		</div>
 	)
 }

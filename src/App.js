@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import NotesDashboard from './components/notes/NotesDashboard';
 import Navigation from './components/navigation/Navigation';
+// import { getAuth } from 'firebase/auth';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
