@@ -7,6 +7,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import NotesDashboard from './components/notes/NotesDashboard';
 import Navigation from './components/navigation/Navigation';
+import NotesList from './components/notes/NotesList';
+import NoteExpanded from './components/notes/NoteExpanded';
 // import { getAuth } from 'firebase/auth';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
@@ -29,6 +31,8 @@ function MyApp() {
 						<Route path='/' element={<Dashboard />} />
 						<Route path='/home' element={<Dashboard />} />
 						<Route path='/notes' element={<NotesDashboard />} />
+						<Route path='/notes/:id' element={<NotesList />} />
+						<Route path='/notes/:id/:data' element={<NoteExpanded />} />
 					</Routes>
 				</Box>
 				<Box sx={{ width: '100vw', minHeight: '7vh', display: 'flex', flexDirection: 'column', bgcolor: '#222', position: 'sticky', top: '0'}}>
