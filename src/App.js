@@ -26,6 +26,7 @@ function MyApp() {
 				<Box sx={{ alignItems: 'center', width: '100vw', minHeight: '86vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default'}}>
 					<Routes>
 						<Route path='/' element={<Dashboard />} />
+						<Route path='/home' element={<Dashboard />} />
 						<Route path='/notes' element={<NotesDashboard />} />
 					</Routes>
 				</Box>
