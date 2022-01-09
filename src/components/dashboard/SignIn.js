@@ -16,7 +16,7 @@ const SignIn = () => {
 	}
 
 	return (
-		<Button onClick={signInWithGoogle}>Sign in with Google</Button>
+		<Button sx={{m: 6}} onClick={signInWithGoogle}>Sign in with Google</Button>
 	)
 }
 
