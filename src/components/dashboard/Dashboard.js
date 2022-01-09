@@ -18,7 +18,6 @@ const Dashboard = () => {
 			setDataFlag(false);
 		} else {
 			setDataFlag(true);
-			console.log(docSnap.data());
 		}
 	}
 
