@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CircularProgress, Typography } from '@mui/material'
+import { Card, CardContent, Typography } from '@mui/material'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import React from 'react'

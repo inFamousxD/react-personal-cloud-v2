@@ -1,5 +1,3 @@
-import { CircularProgress } from '@mui/material'
-import { Box } from '@mui/system'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs } from 'firebase/firestore'
 import React from 'react'
