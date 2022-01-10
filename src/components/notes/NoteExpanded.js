@@ -4,6 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { db } from '../../firebase/firebase-config';
+import Spinner from '../spinner/Spinner';
 import FolderDrawer from './FolderDrawer';
 
 const NoteExpanded = () => {
@@ -40,9 +41,7 @@ const NoteExpanded = () => {
 					</Typography>
 				</CardContent>
 			</Card>
-		</div> : <Box sx={{ display: 'flex' }}>
-      <CircularProgress color='secondary' />
-    </Box>
+		</div> : <Spinner />
 	)
 }
 

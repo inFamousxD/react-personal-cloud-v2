@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs } from 'firebase/firestore'
 import React from 'react'
 import { db } from '../../firebase/firebase-config'
+import Spinner from '../spinner/Spinner'
 import Folder from './Folder'
 import FolderDrawer from './FolderDrawer'
 
@@ -30,9 +31,7 @@ const NotesDashboard = () => {
 			{ !loading && folders.map((folder, index) => {
 				return <Folder key={index} folderName={folder} />
 			}) }
-		</div> : <Box sx={{ display: 'flex' }}>
-      <CircularProgress color='secondary' />
-    </Box>
+		</div> : <Spinner />
 	)
 }
 

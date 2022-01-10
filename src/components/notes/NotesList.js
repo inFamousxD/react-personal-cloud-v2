@@ -5,6 +5,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { db } from '../../firebase/firebase-config';
+import Spinner from '../spinner/Spinner';
 import FolderDrawer from './FolderDrawer';
 import Note from './Note';
 
@@ -36,9 +37,7 @@ const NotesList = () => {
 			{ !loading && data[0] && data.map(noteData => {
 				return <Note key={noteData.createdAt} data={noteData} folderName={folderName} />
 			}) }
-		</div> : <Box sx={{ display: 'flex' }}>
-      <CircularProgress color='secondary' />
-    </Box>
+		</div> : <Spinner />
 	)
 }
 
