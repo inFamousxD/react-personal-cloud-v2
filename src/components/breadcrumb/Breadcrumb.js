@@ -36,7 +36,7 @@ const Breadcrumb = () => {
 	return (
 		<React.Fragment>
 			<Breadcrumbs sx={{ margin: '2vh' }}>
-				<Link href={process.env.PUBLIC_URL + '/#/home'} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
+				<Link href={process.env.PUBLIC_URL + '/#/home'} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color={location[0] === 'home' ? 'primary.main' : 'inherit'}>
 					<HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" /> {'home'}
 				</Link>
 
@@ -45,7 +45,7 @@ const Breadcrumb = () => {
 						return index !== (location.length-1) ? <Link key={index} href={`${process.env.PUBLIC_URL}/#/${index >= 1 ? generateURL(index) : ''}${node}`} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
 										<Icon sx={{ mr: 0.5 }} fontSize="inherit" /> {node}
 									</Link> :
-									<Typography key={index} sx={{ display: 'flex', alignItems: 'center' }} color='text.primary'>
+									<Typography key={index} sx={{ display: 'flex', alignItems: 'center' }} color='primary.main'>
 										<Icon sx={{ mr: 0.5 }} fontSize="inherit" /> {node}
 									</Typography>
 				}) }
