@@ -5,6 +5,7 @@ import { db } from '../../firebase/firebase-config'
 import Spinner from '../spinner/Spinner'
 import Folder from './Folder'
 import FolderDrawer from './FolderDrawer'
+import NotesSpeedDial from './NotesSpeedDial'
 
 const NotesDashboard = () => {
 	const [folders, setFolders] = React.useState([]);
@@ -25,6 +26,7 @@ const NotesDashboard = () => {
 
 	return (
 		!loading ? <div>
+			<NotesSpeedDial />
 			<FolderDrawer />
 			{ !loading && folders.map((folder, index) => {
 				return <Folder key={index} folderName={folder} />
