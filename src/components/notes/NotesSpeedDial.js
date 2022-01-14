@@ -1,6 +1,7 @@
 import { Add, Delete, Edit } from '@mui/icons-material'
 import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const actions = [
 	{icon: <Add />, name: 'Add'},
@@ -11,10 +12,14 @@ const actions = [
 // 	speeddial: 
 // })
 
-const NotesSpeedDial = () => {
+const NotesSpeedDial = ({ takeTo }) => {
+	const navigate = useNavigate();
 	const [state, setState] = React.useState(false);
 	const handleOpen = () => setState(true);
-	const handleClose = () => setState(false);
+	const handleClose = () => {
+		navigate(takeTo);
+		setState(false)
+	};
 
 	return (
 		<div>

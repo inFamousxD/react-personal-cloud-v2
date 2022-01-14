@@ -32,7 +32,7 @@ const NotesList = () => {
 
 	return (
 		!loading ? <div>
-			<NotesSpeedDial />
+			<NotesSpeedDial takeTo={`/notes/${folderName}/create`} />
 			<FolderDrawer />
 			{ !loading && data[0] && data.map(noteData => {
 				return <Note key={noteData.createdAt} data={noteData} folderName={folderName} />
