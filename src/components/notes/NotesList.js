@@ -31,7 +31,7 @@ const NotesList = () => {
 	});
 
 	return (
-		!loading ? <div>
+		!loading ? <div style={{ overflowY: 'scroll', height: '86vh' }}>
 			<NotesSpeedDial takeTo={`/notes/${folderName}/create`} />
 			<FolderDrawer />
 			{ !loading && data[0] && data.map(noteData => {

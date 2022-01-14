@@ -3,23 +3,15 @@ import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/materi
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const actions = [
-	{icon: <Add />, name: 'Add'},
-	{icon: <Delete />, name: 'Delete'}
-];
-
-// const useStyles = makeStyles({
-// 	speeddial: 
-// })
-
 const NotesSpeedDial = ({ takeTo }) => {
 	const navigate = useNavigate();
 	const [state, setState] = React.useState(false);
 	const handleOpen = () => setState(true);
 	const handleClose = () => {
-		navigate(takeTo);
 		setState(false)
 	};
+
+	const handleCreateNew = () => {navigate(takeTo); handleClose()};
 
 	return (
 		<div>
@@ -42,11 +34,17 @@ const NotesSpeedDial = ({ takeTo }) => {
 					}
 				}}
 			>
-				{actions.map(action => {return <SpeedDialAction key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
-            tooltipOpen
-            onClick={handleClose}/>})}
+				<SpeedDialAction
+				icon={<Add />}
+				tooltipTitle={'Add'}
+				tooltipOpen
+				onClick={handleCreateNew}/>
+
+				<SpeedDialAction
+				icon={<Delete />}
+				tooltipTitle={'Delete'}
+				tooltipOpen
+				onClick={handleClose}/>
 			</SpeedDial>
 		</div>
 	)
