@@ -1,4 +1,4 @@
-import { Button, Card, Typography } from '@mui/material';
+import { Button, Card, LinearProgress, Typography } from '@mui/material';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import React from 'react'
 import SignIn from './SignIn'
@@ -38,6 +38,7 @@ const Dashboard = () => {
 	return (
 		<div>
 			{ displaySignIn && <SignIn /> }	
+			{ !userName && !displaySignIn && <LinearProgress sx={{width: '95vw', mt: 4}} color="secondary" /> }
 			{ userName && <div><Typography color='text.secondary' sx={{ m: 2 }}>{'Logged in as ' + userName}</Typography></div> }
 			{ !dataFlag && <Card sx={{ display: 'flex', m: 1.5 }}><Typography color='text.secondary' sx={{ m: 2 }}>{'No data found in firebase. Press \'Create Data\' to start job.'}</Typography><Button onClick={createFreshData} variant='text'>Create Data</Button></Card> }
 		</div>
