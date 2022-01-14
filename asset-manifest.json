@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-personal-cloud-v2/static/css/main.8762a861.css",
-    "main.js": "/react-personal-cloud-v2/static/js/main.ee3f68fb.js",
+    "main.js": "/react-personal-cloud-v2/static/js/main.4796d1c5.js",
     "index.html": "/react-personal-cloud-v2/index.html",
     "main.8762a861.css.map": "/react-personal-cloud-v2/static/css/main.8762a861.css.map",
-    "main.ee3f68fb.js.map": "/react-personal-cloud-v2/static/js/main.ee3f68fb.js.map"
+    "main.4796d1c5.js.map": "/react-personal-cloud-v2/static/js/main.4796d1c5.js.map"
   },
   "entrypoints": [
     "static/css/main.8762a861.css",
-    "static/js/main.ee3f68fb.js"
+    "static/js/main.4796d1c5.js"
   ]
 }
