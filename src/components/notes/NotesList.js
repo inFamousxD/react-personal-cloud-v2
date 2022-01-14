@@ -25,7 +25,7 @@ const NotesList = () => {
 				dt["id"] = doc.id;
 				holder.push(dt);
 			});
-			holder.sort((a, b) => {return a.createdAt - b.createdAt})
+			holder.sort((a, b) => {return b.createdAt - a.createdAt})
 			setLoading(false);
 			setData(holder);
 		}
