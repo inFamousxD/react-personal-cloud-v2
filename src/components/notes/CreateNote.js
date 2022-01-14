@@ -3,7 +3,7 @@ import { Button, Card, CardActions, CardContent, IconButton, TextField, Typograp
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/firebase-config';
 
 const CreateNote = () => {
@@ -14,6 +14,7 @@ const CreateNote = () => {
 	});
 	const location =  useLocation().pathname.split('/');
 
+	const nav = useNavigate();
 	const handleStateChange = (event) => {
 		setState({...state, [event.target.name]: event.target.value})
 	}
@@ -32,7 +33,8 @@ const CreateNote = () => {
 		const auth = getAuth();
 		onAuthStateChanged(auth, async user => {
 			if (user) {
-				addDoc(collection(db, "users", user.uid, "notes", folderName, "data"), data);
+				const docRef = addDoc(collection(db, "users", user.uid, "notes", folderName, "data"), data);
+				nav('/notes/' + folderName + '/' + (await docRef).id);
 			}
 		})
 	}
@@ -51,7 +53,7 @@ const CreateNote = () => {
 				<Typography variant='h5'>Create a new Note</Typography>
 				<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 					<TextField sx={{ mt: 2, width: '80%' }} variant='outlined' fullWidth label='Enter note title' size='small' value={state.title} onChange={handleStateChange} name='title'/>
-					<IconButton sx={{ mt: 2 }} size='small' onClick={() => setState({ ...state, favourite: !state.favourite })}> { state.favourite ? <FavoriteRounded sx={{ color: '#d32f2f' }} /> : <FavoriteBorder sx={{ color: '#d32f2f' }} /> } </IconButton>
+					<IconButton sx={{ mt: 2 }} size='small' onClick={() => setState({ ...state, favourite: !state.favourite })}> { state.favourite ? <FavoriteRounded sx={{ color: '#900C3F' }} /> : <FavoriteBorder sx={{ color: '#900C3F' }} /> } </IconButton>
 				</div>
 				<TextField sx={{ mt: 4 }} minRows={10} size='small' variant='outlined' multiline fullWidth label='Enter note body' value={state.body} onChange={handleStateChange} name='body'/>
 			</CardContent>

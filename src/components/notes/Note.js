@@ -15,12 +15,15 @@ const Note = ({ data, folderName }) => {
 			<Card sx={{
 				cursor: 'pointer',
 				width: '92vw',
-				m: 2
+				m: 2,
+				borderRight: data.content.favourite ? '1px solid #900C3F' : ''
 			}} onClick={handleOpenNote}>
 				<CardContent>
-					<Typography gutterBottom variant="h6" component="div">
-						{data.content.title.length >= 50 ? data.content.title.substring(0, 50) + '...' : data.content.title}
-					</Typography>
+					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<Typography gutterBottom variant="h6" component="div">
+							{data.content.title.length >= 50 ? data.content.title.substring(0, 50) + '...' : data.content.title}
+						</Typography>
+					</div>
 					<Typography variant="body2" color="text.secondary">
 						{data.content.body.length >= 150 ? data.content.body.substring(0, 150) + '...' : data.content.body}
 					</Typography>
