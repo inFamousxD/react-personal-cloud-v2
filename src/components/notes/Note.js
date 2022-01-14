@@ -14,7 +14,7 @@ const Note = ({ data, folderName }) => {
 			<FolderDrawer />
 			<Card sx={{
 				cursor: 'pointer',
-				width: '92vw',
+				width: '93vw',
 				m: 2,
 				borderRight: data.content.favourite ? '1px solid #900C3F' : ''
 			}} onClick={handleOpenNote}>

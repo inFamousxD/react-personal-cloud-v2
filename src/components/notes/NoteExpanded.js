@@ -28,7 +28,7 @@ const NoteExpanded = () => {
 		!loading ? <div>
 			<FolderDrawer />
 			<Card sx={{
-				width: '92vw',
+				width: '93vw',
 				height: '82vh',
 				m: 2
 			}}>

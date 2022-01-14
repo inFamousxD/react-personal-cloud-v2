@@ -41,7 +41,7 @@ const CreateNote = () => {
 
 	return (
 		<Card sx={{
-			width: '94%',
+			width: '93vw',
 			height: '80vh',
 			m: 2,
 			// overflowY: 'scroll'
