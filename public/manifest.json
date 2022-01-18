@@ -3,18 +3,18 @@
   "name": "React Personal Cloud V2",
   "icons": [
     {
-      "src": "cloud-dark.png",
+      "src": "cloud-green.ico",
       "sizes": "256x256",
-      "type": "image/png"
+      "type": "image/ico"
     },
     {
-      "src": "cloud-dark.png",
-      "type": "image/png",
+      "src": "cloud-green.ico",
+      "type": "image/ico",
       "sizes": "256x256"
     },
     {
-      "src": "cloud-dark.png",
-      "type": "image/png",
+      "src": "cloud-green.ico",
+      "type": "image/ico",
       "sizes": "256x256"
     }
   ],
