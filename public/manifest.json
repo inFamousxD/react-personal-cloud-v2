@@ -4,18 +4,15 @@
   "icons": [
     {
       "src": "cloud-green.ico",
-      "sizes": "256x256",
+      "sizes": "256x256"
+    },
+    {
+      "src": "cloud-green.ico",
+      "sizes": "256x256"
+    },
+    {
+      "src": "cloud-green.ico",
       "type": "image/ico"
-    },
-    {
-      "src": "cloud-green.ico",
-      "type": "image/ico",
-      "sizes": "256x256"
-    },
-    {
-      "src": "cloud-green.ico",
-      "type": "image/ico",
-      "sizes": "256x256"
     }
   ],
   "start_url": ".",
