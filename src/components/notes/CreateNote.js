@@ -58,8 +58,8 @@ const CreateNote = () => {
 				<TextField sx={{ mt: 4 }} minRows={10} size='small' variant='outlined' multiline fullWidth label='Enter note body' value={state.body} onChange={handleStateChange} name='body'/>
 			</CardContent>
 			<CardActions sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-				<Button sx={{ mt: 4 }} color='error' variant='text'>Back</Button>
 				<Button sx={{ mt: 4 }} color='success' variant='text' onClick={handleCreateNewNote}>Create</Button>
+				<Button sx={{ mt: 4 }} color='error' variant='text'>Back</Button>
 			</CardActions>
 		</Card>
 	)
