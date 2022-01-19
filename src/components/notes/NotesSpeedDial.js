@@ -44,11 +44,11 @@ const NotesSpeedDial = ({ takeTo, setModalOpen }) => {
 				tooltipOpen
 				onClick={() => setModalOpen(true)}/>}
 
-				<SpeedDialAction
+				{ takeTo === 'folder' && <SpeedDialAction
 				icon={<Delete />}
 				tooltipTitle={'Delete'}
 				tooltipOpen
-				onClick={handleClose}/>
+				onClick={handleClose}/>}
 			</SpeedDial>
 		</div>
 	)
