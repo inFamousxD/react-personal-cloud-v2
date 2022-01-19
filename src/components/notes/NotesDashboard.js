@@ -2,6 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { db } from '../../firebase/firebase-config'
 import Spinner from '../spinner/Spinner'
 import Folder from './Folder'
@@ -13,6 +14,8 @@ const NotesDashboard = () => {
 	const [loading, setLoading] = React.useState(true);
 	const [modalState, setModalState] = React.useState(false);
 	const [folderName, setFolderName] = React.useState('');
+
+	const nav = useNavigate();
 
 	const auth = getAuth();
 	onAuthStateChanged(auth, async user => {
@@ -34,18 +37,9 @@ const NotesDashboard = () => {
 					name: folderName
 				});
 				setFolders([...folders, folderName]);
-				// if (await (docRef).id) {
-				// 	await addDoc(collection(db, "users", user.uid, "notes", folderName, "data"), {
-				// 		content: {
-				// 			title: 'Your first note in ' + folderName + ' folder!',
-				// 			body: 'Feel free to delete this note and start adding your own!',
-				// 			favourite: true
-				// 		}, 
-				// 		createdAt: Date.now()
-				// 	});
-				// }
 				setModalState(false);
 				setFolderName('');
+				nav('/notes/' + folderName);
 			}
 		})
 	}
@@ -68,7 +62,8 @@ const NotesDashboard = () => {
 						variant='standard'
 						value={folderName}
 						label='Folder Name'
-						onChange={(e) => setFolderName(e.target.value)}
+						autoComplete='off'
+						onChange={(e) => {setFolderName(e.target.value); }}
 					/>
 					<DialogActions>
 						<Button onClick={() => {setModalState(false)}} variant='text' color='error'>Cancel</Button>
