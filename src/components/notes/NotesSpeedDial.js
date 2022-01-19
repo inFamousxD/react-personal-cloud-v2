@@ -3,7 +3,7 @@ import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/materi
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const NotesSpeedDial = ({ takeTo }) => {
+const NotesSpeedDial = ({ takeTo, setModalOpen }) => {
 	const navigate = useNavigate();
 	const [state, setState] = React.useState(false);
 	const handleOpen = () => setState(true);
@@ -34,11 +34,15 @@ const NotesSpeedDial = ({ takeTo }) => {
 					}
 				}}
 			>
-				<SpeedDialAction
+				{ takeTo !== 'folder' ? <SpeedDialAction
 				icon={<Add />}
 				tooltipTitle={'Add'}
 				tooltipOpen
-				onClick={handleCreateNew}/>
+				onClick={handleCreateNew}/> : <SpeedDialAction
+				icon={<Add />}
+				tooltipTitle={'Add'}
+				tooltipOpen
+				onClick={() => setModalOpen(true)}/>}
 
 				<SpeedDialAction
 				icon={<Delete />}
