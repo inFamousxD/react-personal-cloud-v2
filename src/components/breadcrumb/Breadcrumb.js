@@ -14,7 +14,7 @@ const Breadcrumb = () => {
 	const locationCleanup = () => {
 		location.shift();
 		if (location.length > 3) location.length = 3
-		if (location.length === 3 && location[2].length > 7) location[2] = location[2].substring(0, 6).concat('...');
+		if (location.length === 3 && location[2].length > 7) {location[2] = location[2].substring(0, 6).concat('...'); if (location[1].length > 12) location[1] = location[1].substring(0, 6).concat('...');}
 	}
 
 	const generateURL = (index) => {
