@@ -27,6 +27,9 @@ const Note = ({ data, folderName }) => {
 					<Typography variant="body2" color="text.secondary">
 						{data.content.body.length >= 150 ? data.content.body.substring(0, 150) + '...' : data.content.body}
 					</Typography>
+					<Typography variant="body2" color="text.primary" sx={{mt: 1}}>
+						{new Date(data.createdAt).toDateString()}
+					</Typography>
 				</CardContent>
 			</Card>
 		</React.Fragment>

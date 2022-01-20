@@ -52,6 +52,9 @@ const NoteExpanded = () => {
 					<Typography gutterBottom variant="h5" component="div">
 						{data.content.title}
 					</Typography>
+					<Typography variant="body2" color="text.primary" sx={{mt: 1}}>
+						{new Date(data.createdAt).toDateString()}
+					</Typography>
 					<Typography variant="body2" color="text.secondary" sx={{ mt: 4 }}>
 						{data.content.body}
 					</Typography>
