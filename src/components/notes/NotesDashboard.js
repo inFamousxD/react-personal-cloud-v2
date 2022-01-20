@@ -31,17 +31,20 @@ const NotesDashboard = () => {
 	})
 
 	const handleCreateNewFolder = () => {
+		if (folderName.length > 2)
 		onAuthStateChanged(auth, async user => {
+			let fname = folderName.replace(/\s/g, '_').toLowerCase();
 			if (user) {
-				await setDoc(doc(db, "users", user.uid, "notes", folderName), {
-					name: folderName
+				await setDoc(doc(db, "users", user.uid, "notes", fname), {
+					name: fname
 				});
-				setFolders([...folders, folderName]);
+				setFolders([...folders, fname]);
 				setModalState(false);
 				setFolderName('');
-				nav('/notes/' + folderName);
+				nav('/notes/' + fname);
 			}
 		})
+		else alert('Folder name should be more than 2 characters.')
 	}
 
 	return (
@@ -64,6 +67,7 @@ const NotesDashboard = () => {
 						label='Folder Name'
 						autoComplete='off'
 						onChange={(e) => {setFolderName(e.target.value); }}
+						required
 					/>
 					<DialogActions>
 						<Button onClick={() => {setModalState(false)}} variant='text' color='error'>Cancel</Button>
