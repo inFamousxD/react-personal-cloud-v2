@@ -14,7 +14,7 @@ const Breadcrumb = () => {
 	const locationCleanup = () => {
 		location.shift();
 		if (location.length > 3) location.length = 3
-		if (location.length === 3 && location[2].length > 7) {location[2] = location[2].substring(0, 6).concat('...'); if (location[1].length > 12) location[1] = location[1].substring(0, 6).concat('...');}
+		if (location.length === 3 && location[2].length > 7) {location[2] = location[2].substring(0, 3).concat('...'); if (location[1].length > 12) location[1] = location[1].substring(0, 6).concat('...');}
 	}
 
 	const generateURL = (index) => {
@@ -35,7 +35,7 @@ const Breadcrumb = () => {
 
 	return (
 		<React.Fragment>
-			<Breadcrumbs sx={{ margin: '2vh' }}>
+			<Breadcrumbs sx={{ margin: '2vh', overflowX: 'hidden' }}>
 				<Link href={process.env.PUBLIC_URL + '/#/home'} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color={location[0] === 'home' ? 'primary.main' : 'inherit'}>
 					<HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" /> {'home'}
 				</Link>
