@@ -1,6 +1,6 @@
 import { Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { doc, getDoc, deleteDoc, setDoc } from 'firebase/firestore';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { db } from '../../firebase/firebase-config';
@@ -37,6 +37,26 @@ const NoteExpanded = () => {
 		})
 	}
 
+	const editNote = () => {
+		navigate(`/notes/${folderName}/edit/${noteId}`);
+	}
+
+	const toggleFavourite = () => {
+		onAuthStateChanged(auth, async user => {
+			if (user) {
+				let datax = {
+					...data,
+					content: {
+						...data.content,
+						favourite: !data.content.favourite
+					}
+				};
+				await setDoc(doc(db, "users", user.uid, "notes", folderName, "data", noteId), datax);
+				setData(datax);
+			}
+		})
+	}
+
 	return (
 		!loading ? <div>
 			<FolderDrawer />
@@ -60,6 +80,8 @@ const NoteExpanded = () => {
 				</CardContent>
 				<CardActions sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
 					<Button sx={{ mt: 4 }} color='error' variant='text' onClick={deleteNote}>Delete</Button>
+					<Button sx={{ mt: 4 }} color='primary' variant='text' onClick={editNote}>Edit</Button>
+					<Button sx={{ mt: 4 }} color='primary' variant='text' onClick={toggleFavourite}>{ data.content.favourite ? `Remove from Favourites` : `Add to Favourites` }</Button>
 				</CardActions>
 			</Card>
 		</div> : <Spinner />

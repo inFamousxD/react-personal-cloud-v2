@@ -15,6 +15,7 @@ import ThemeSettings from './components/settings/ThemeSettings';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebase/firebase-config';
+import EditNote from './components/notes/EditNote';
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -39,6 +40,7 @@ function MyApp() {
 						<Route path='/notes/:folder' element={<NotesList />} />
 						<Route path='/notes/:folder/:note' element={<NoteExpanded />} />
 						<Route path='/notes/:folder/create' element={<CreateNote />} />
+						<Route path='/notes/:folder/edit/:id' element={<EditNote />} />
 
 						<Route path='/settings' element={<Settings />} />
 						<Route path='/settings/theme' element={<ThemeSettings />} />

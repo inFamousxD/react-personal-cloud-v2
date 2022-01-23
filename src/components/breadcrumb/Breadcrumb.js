@@ -42,7 +42,7 @@ const Breadcrumb = () => {
 
 				{ location[0] !== 'home' && location[0] !== "" && location.map((node, index) => {
 						const Icon = icons[index];
-						return index !== (location.length-1) ? <Link key={index} href={`${process.env.PUBLIC_URL}/#/${index >= 1 ? generateURL(index) : ''}${node}`} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
+						return index < 5 && index !== (location.length-1) ? <Link key={index} href={`${process.env.PUBLIC_URL}/#/${index >= 1 ? generateURL(index) : ''}${node}`} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} underline='hover' color='inherit'>
 										<Icon sx={{ mr: 0.5 }} fontSize="inherit" /> {node}
 									</Link> :
 									<Typography key={index} sx={{ display: 'flex', alignItems: 'center' }} color='primary.main'>

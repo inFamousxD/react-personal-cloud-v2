@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import React from 'react'
 import SignIn from './SignIn'
 
-import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase-config';
 
 const Dashboard = () => {
