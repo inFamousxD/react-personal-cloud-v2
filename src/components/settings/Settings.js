@@ -1,5 +1,6 @@
 import { FormatPaint, Info, ManageAccounts } from '@mui/icons-material';
 import { Divider, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
+import { getAuth, signOut } from 'firebase/auth';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +9,14 @@ const Settings = () => {
 
 	const handleNavigation = (to) => {
 		nav('/settings/' + to)
+	}
+
+	const auth = getAuth();
+
+	const handleSignOut = () => {
+		signOut(auth).then(() => {
+			nav('/');
+		})
 	}
 
 	return <List component='nav' sx={{
@@ -29,7 +38,7 @@ const Settings = () => {
 			</ListItemAvatar>
 			<ListItemText sx={{color: 'text.secondary'}} primary='Session Details'></ListItemText>
 		</ListItem>
-		<ListItem button>
+		<ListItem button onClick={handleSignOut}>
 			<ListItemAvatar>
 				<ManageAccounts sx={{color: 'text.secondary'}} />
 			</ListItemAvatar>
