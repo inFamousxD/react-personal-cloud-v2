@@ -60,6 +60,7 @@ export default function ToggleColorMode() {
 	onAuthStateChanged(auth, async user => {
 		const docRef = await getDoc(doc(db, "users", user.uid));
 		setMode(docRef.data().colourMode);
+		setAccent(docRef.data().accent);
 	})
 
   const theme = React.useMemo(
