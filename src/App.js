@@ -10,6 +10,8 @@ import Navigation from './components/navigation/Navigation';
 import NotesList from './components/notes/NotesList';
 import NoteExpanded from './components/notes/NoteExpanded';
 import CreateNote from './components/notes/CreateNote';
+import Settings from './components/settings/Settings';
+import ThemeSettings from './components/settings/ThemeSettings';
 // import { getAuth } from 'firebase/auth';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
@@ -35,6 +37,9 @@ function MyApp() {
 						<Route path='/notes/:folder' element={<NotesList />} />
 						<Route path='/notes/:folder/:note' element={<NoteExpanded />} />
 						<Route path='/notes/:folder/create' element={<CreateNote />} />
+
+						<Route path='/settings' element={<Settings />} />
+						<Route path='/settings/theme' element={<ThemeSettings />} />
 					</Routes>
 				</Box>
 				<Box sx={{ width: '100vw', minHeight: '7vh', display: 'flex', flexDirection: 'column', bgcolor: '#222', position: 'sticky', top: '0'}}>
