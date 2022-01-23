@@ -26,7 +26,6 @@ const ThemeSettings = () => {
 				<ListItemText sx={{color: 'text.secondary'}} primary='Accent' />
 				<Chip edge='end' color='primary'></Chip>
 			</ListItem>
-			<Divider />
 		</List>
 };
 
