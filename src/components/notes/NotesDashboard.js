@@ -51,9 +51,11 @@ const NotesDashboard = () => {
 		!loading ? <div>
 			<NotesSpeedDial takeTo={'folder'} setModalOpen={setModalState} />
 			<FolderDrawer />
+			<div style={{ height: '84vh', overflowY: 'scroll' }}>
 			{ !loading && folders.map((folder, index) => {
 				return <Folder key={index} folderName={folder} />
 			}) }
+			</div>
 			<Dialog fullWidth open={modalState} onClose={() => {setModalState(false)}}>
 				<DialogTitle>Create New Folder</DialogTitle>
 				<DialogContent>

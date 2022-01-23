@@ -31,9 +31,9 @@ const Folder = ({folderName}) => {
 
 	return (
 		<div>
-			<Card sx={{ display: 'flex', width: '93vw', m: 2, cursor: 'pointer', justifyContent: 'space-between' }}>
+			<Card sx={{ display: 'flex', width: '93vw', mb: 2, cursor: 'pointer', justifyContent: 'space-between' }}>
 				<Typography color='text.secondary' sx={{m: 2, width: '100%'}}  onClick={handleNavigate}>{folderName}</Typography>
-				<IconButton onClick={handleFolderOptions}><MoreVert /></IconButton>
+				<IconButton color='primary' onClick={handleFolderOptions}><MoreVert /></IconButton>
 			</Card>
 			<Popover
 				open={Boolean(openPopover)}
