@@ -54,6 +54,7 @@ function MyApp() {
 
 export default function ToggleColorMode() {
   const [mode, setMode] = React.useState('dark');
+	const [accent, setAccent] = React.useState('#4CAF50');
 
 	const auth = getAuth();
 	onAuthStateChanged(auth, async user => {
@@ -67,15 +68,15 @@ export default function ToggleColorMode() {
         palette: {
           mode,
 					primary: {
-						main: '#4caf50'
+						main: accent
 					}
         },
       }),
-    [mode],
+    [mode, accent],
   );
 
   return (
-    <ColorModeContext.Provider value={{mode, setMode}}>
+    <ColorModeContext.Provider value={{mode, setMode, accent, setAccent}}>
       <ThemeProvider theme={theme}>
         <MyApp />
       </ThemeProvider>
