@@ -73,8 +73,8 @@ const ThemeSettings = () => {
 					>
 						<Close />
 					</IconButton>
-					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-						Sound
+					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div" color={'primary.main'}>
+						Pick Accent Color
 					</Typography>
 				</Toolbar>
 			</AppBar>
