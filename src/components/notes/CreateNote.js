@@ -50,15 +50,15 @@ const CreateNote = () => {
 			flexDirection: 'column'
 		}}>
 			<CardContent>
-				<Typography variant='h5'>Create a new Note</Typography>
+				<Typography color='primary.main' variant='h5'>Create a new Note</Typography>
 				<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-					<TextField sx={{ mt: 2, width: '80%' }} variant='outlined' fullWidth label='Enter note title' size='small' value={state.title} onChange={handleStateChange} name='title'/>
-					<IconButton sx={{ mt: 2 }} size='small' onClick={() => setState({ ...state, favourite: !state.favourite })}> { state.favourite ? <FavoriteRounded sx={{ color: '#900C3F' }} /> : <FavoriteBorder sx={{ color: '#900C3F' }} /> } </IconButton>
+					<TextField sx={{ mt: 2, width: '80%' }} variant='standard' fullWidth label='Note title' size='small' value={state.title} onChange={handleStateChange} name='title'/>
+					<IconButton sx={{ mt: 2 }} size='small' onClick={() => setState({ ...state, favourite: !state.favourite })}> { state.favourite ? <FavoriteRounded sx={{ color: 'primary.main' }} /> : <FavoriteBorder sx={{ color: 'primary.main' }} /> } </IconButton>
 				</div>
-				<TextField sx={{ mt: 4 }} minRows={10} size='small' variant='outlined' multiline fullWidth label='Enter note body' value={state.body} onChange={handleStateChange} name='body'/>
+				<TextField sx={{ mt: 2 }} minRows={10} size='small' variant='standard' multiline fullWidth label='Note body' value={state.body} onChange={handleStateChange} name='body'/>
 			</CardContent>
 			<CardActions sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-				<Button sx={{ mt: 4 }} color='success' variant='text' onClick={handleCreateNewNote}>Create</Button>
+				<Button sx={{ mt: 4 }} color='primary' variant='text' onClick={handleCreateNewNote}>Create</Button>
 				<Button sx={{ mt: 4 }} color='error' variant='text'>Back</Button>
 			</CardActions>
 		</Card>

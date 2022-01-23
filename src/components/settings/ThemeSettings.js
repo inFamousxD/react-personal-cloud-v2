@@ -1,5 +1,5 @@
-import { Close, Colorize, DarkMode, FormatColorFill, Palette } from '@mui/icons-material';
-import { AppBar, Chip, Dialog, Divider, Icon, IconButton, List, ListItem, ListItemIcon, ListItemText, Switch, Toolbar, Typography } from '@mui/material';
+import { Close, Colorize, DarkMode, FormatColorFill } from '@mui/icons-material';
+import { AppBar, Dialog, Divider, Icon, IconButton, List, ListItem, ListItemIcon, ListItemText, Switch, Toolbar, Typography } from '@mui/material';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import React, { useContext, useState } from 'react';
@@ -73,7 +73,7 @@ const ThemeSettings = () => {
 					>
 						<Close />
 					</IconButton>
-					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div" color={'primary.main'}>
+					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div" color={accent}>
 						Pick Accent Color
 					</Typography>
 				</Toolbar>
