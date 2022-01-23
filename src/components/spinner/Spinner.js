@@ -5,7 +5,7 @@ import React from 'react'
 const Spinner = () => {
 	return (
 		<Box sx={{ display: 'flex', m: 8 }}>
-      <CircularProgress color='secondary' />
+      <CircularProgress color='success' />
     </Box>
 	)
 }
