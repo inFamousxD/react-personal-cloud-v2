@@ -12,9 +12,11 @@ import NoteExpanded from './components/notes/NoteExpanded';
 import CreateNote from './components/notes/CreateNote';
 import Settings from './components/settings/Settings';
 import ThemeSettings from './components/settings/ThemeSettings';
-// import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from './firebase/firebase-config';
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function MyApp() {
 	const [value, setValue] = React.useState('');
@@ -52,14 +54,12 @@ function MyApp() {
 
 export default function ToggleColorMode() {
   const [mode, setMode] = React.useState('dark');
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    [],
-  );
+
+	const auth = getAuth();
+	onAuthStateChanged(auth, async user => {
+		const docRef = await getDoc(doc(db, "users", user.uid));
+		setMode(docRef.data().colourMode);
+	})
 
   const theme = React.useMemo(
     () =>
@@ -75,7 +75,7 @@ export default function ToggleColorMode() {
   );
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
+    <ColorModeContext.Provider value={{mode, setMode}}>
       <ThemeProvider theme={theme}>
         <MyApp />
       </ThemeProvider>
