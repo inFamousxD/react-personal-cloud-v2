@@ -25,10 +25,10 @@ const NotesSpeedDial = ({ takeTo, setModalOpen }) => {
 				onClose={handleClose}
 				FabProps={{
 					sx: {
-						bgcolor: '#222',
+						bgcolor: 'background.default',
 						color: 'primary.main',
 						'&:hover': {
-							bgcolor: '#222',
+							bgcolor: 'background.default',
 							color: 'primary.main'
 						}
 					}

@@ -8,6 +8,9 @@ import App from './App';
 const theme = createTheme({
   palette: {
     mode: "dark",
+		primary: {
+			main: '#4caf50'
+		}
   }
 });
 

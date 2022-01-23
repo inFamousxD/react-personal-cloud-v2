@@ -24,10 +24,10 @@ function MyApp() {
   return (
 		<React.Fragment>
 			<Router>
-				<Box sx={{ width: '100vw', minHeight: '7vh', display: 'flex', flexDirection: 'column', bgcolor: '#222', position: 'sticky', top: '0'}}>
+				<Box sx={{ width: '100vw', minHeight: '7vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.paper', position: 'sticky', top: '0'}}>
 					<Breadcrumb />
 				</Box>
-				<Box sx={{ alignItems: 'center', width: '100vw', minHeight: '86vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default'}}>
+				<Box sx={{ alignItems: 'center', width: '100vw', minHeight: '86vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.paper'}}>
 					<Routes>
 						<Route path='/' element={<Dashboard />} />
 						<Route path='/home' element={<Dashboard />} />
@@ -61,6 +61,9 @@ export default function ToggleColorMode() {
       createTheme({
         palette: {
           mode,
+					primary: {
+						main: '#4caf50'
+					}
         },
       }),
     [mode],
