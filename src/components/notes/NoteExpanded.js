@@ -42,8 +42,7 @@ const NoteExpanded = () => {
 			<FolderDrawer />
 			<Card sx={{
 				width: '93vw',
-				height: '82vh',
-				m: 2,
+				height: '86vh',
 				display: 'flex',
 				justifyContent: 'space-between',
 				flexDirection: 'column'
