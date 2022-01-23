@@ -14,7 +14,7 @@ const Note = ({ data, folderName }) => {
 			<Card sx={{
 				cursor: 'pointer',
 				width: '93vw',
-				m: 2,
+				mb: 2, ml: 2, mr: 2
 			}} onClick={handleOpenNote}>
 				<CardContent>
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
