@@ -81,7 +81,7 @@ const NoteExpanded = () => {
 				<CardActions sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
 					<Button sx={{ mt: 4 }} color='error' variant='text' onClick={deleteNote}>Delete</Button>
 					<Button sx={{ mt: 4 }} color='primary' variant='text' onClick={editNote}>Edit</Button>
-					<Button sx={{ mt: 4 }} color='primary' variant='text' onClick={toggleFavourite}>{ data.content.favourite ? `Remove from Favourites` : `Add to Favourites` }</Button>
+					<Button sx={{ mt: 4 }} color='primary' variant='text' onClick={toggleFavourite}>{ data.content.favourite ? `Remove from Fav` : `Add to Fav` }</Button>
 				</CardActions>
 			</Card>
 		</div> : <Spinner />
