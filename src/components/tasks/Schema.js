@@ -28,3 +28,10 @@ const document = {
 }
 
 console.log(folders, document);
+
+// Schema v2
+
+const fetchAllFolders = `c: users, d: userid, c: tasks`;
+const fetchAllSectionsInFolder = `c: users, d: userid, c: tasks, d: folderName, c: sections`;
+const fetchAllTasksInSection = `c: users, d: userid, c: tasks, d: folderName, c: sections, d: sectionName, c: tasks`;
+const fetchAllSubtasksInTasks = `c: users, d: userid, c: tasks, d: folderName, c: sections, d: sectionId, c: tasks, d: taskId, c:subtasks`;
