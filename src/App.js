@@ -16,6 +16,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebase/firebase-config';
 import EditNote from './components/notes/EditNote';
+import TasksDashboard from './components/tasks/TasksDashboard';
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -41,6 +42,8 @@ function MyApp() {
 						<Route path='/notes/:folder/:note' element={<NoteExpanded />} />
 						<Route path='/notes/:folder/create' element={<CreateNote />} />
 						<Route path='/notes/:folder/edit/:id' element={<EditNote />} />
+
+						<Route path='/tasks' element={<TasksDashboard />} />
 
 						<Route path='/settings' element={<Settings />} />
 						<Route path='/settings/theme' element={<ThemeSettings />} />
