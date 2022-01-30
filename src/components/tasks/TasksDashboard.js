@@ -37,7 +37,7 @@ const TasksDashboard = () => {
 
 	return loading ? <Spinner /> : <div style={{ width: '95%', height: '84vh' }}>
 		<Typography sx={{ color: 'text.primary', ml: 1 }} variant='h6'>{currentFolder.folderName}</Typography>
-		<TasksFolderContents data={data.filter(data => { return data.folderName === currentFolder.folderName })} folder={currentFolder}/>
+		<TasksFolderContents data={ data.filter(data => { return data.folderName === currentFolder.folderName }) } setData={setData} folder={currentFolder}/>
 	</div>;
 };
 

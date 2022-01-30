@@ -154,7 +154,7 @@ const StyledTreeItem = styled((props) => (
   },
 }));
 
-export default function TasksFolderContents({ data, folder }) {
+export default function TasksFolderContents({ data, setData, folder }) {
   return (
     <TreeView
       aria-label="customized"
@@ -168,23 +168,23 @@ export default function TasksFolderContents({ data, folder }) {
 				data[0].data.map((section, sectionIndex) => {
 					return <StyledTreeItem key={`section${sectionIndex}`} 
 										nodeId={`section${sectionIndex}`} 
-										label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '4.5vh' }}>
+										label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
 														<Typography color={'text.secondary'}>{section.sectionName}</Typography>
-														<StyledSpeedDial loc={'section'} index={sectionIndex + ''} folderId={folder.folderId}/>
+														<StyledSpeedDial loc={'section'} index={sectionIndex + ''} setData={setData} data={data} folderId={folder.folderId}/>
 													</Box>}>
 						{section.sectionData.map((task, taskIndex) => {
 							return <StyledTreeItem key={`task${sectionIndex}${taskIndex}`} 
 												nodeId={`task${sectionIndex}${taskIndex}`} 
-												label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '4.5vh' }}>
+												label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
 																<Typography color={'text.secondary'}>{task.taskName}</Typography>
-																<StyledSpeedDial loc={'task'} index={sectionIndex + ', ' + taskIndex} folderId={folder.folderId}/>
+																<StyledSpeedDial loc={'task'} index={sectionIndex + ', ' + taskIndex} setData={setData} data={data} folderId={folder.folderId}/>
 															</Box>}>
 								{task.taskData.map((subtask, subtaskIndex) => {
 									return <StyledTreeItem key={`subtask${sectionIndex}${subtaskIndex}${taskIndex}`} 
 														nodeId={`subtask${sectionIndex}${subtaskIndex}${taskIndex}`} 
-														label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '4.5vh' }}>
+														label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
 																		<Typography color={'text.secondary'}>{subtask.subtaskName}</Typography>
-																		<StyledSpeedDial loc={'subtask'} index={sectionIndex + ', ' + taskIndex + ', ' + subtaskIndex} folderId={folder.folderId}/>
+																		<StyledSpeedDial loc={'subtask'} index={sectionIndex + ', ' + taskIndex + ', ' + subtaskIndex} setData={setData} data={data} folderId={folder.folderId}/>
 																	</Box>} />
 								})}
 							</StyledTreeItem>

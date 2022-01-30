@@ -3,14 +3,66 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { Add, ArrowLeft, ArrowRight, Check, DeleteOutline } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
-import { SpeedDialIcon } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, SpeedDialIcon, TextField } from '@mui/material';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase/firebase-config';
+import { Box } from '@mui/system';
 
-export default function StyledSpeedDialComponent({ loc, index, folderId }) {
+export default function StyledSpeedDialComponent({ loc, index, folderId, data, setData }) {
+	const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+	const [dialogContent, setDialogContent] = React.useState({
+		subtaskName: '',
+		taskName: '',
+		sectionName: ''
+	});
+
+	const handleDialogSubtask = (e) => {
+		setDialogContent({...dialogContent, subtaskName: e.target.value});
+	}
+
+	const auth = getAuth();
 	const add = () => {
 		console.log('Add to ' + loc);
+
+		// add a new subtask
+		if (loc === 'task') {
+			let handler = [...data, data[0].data[0].sectionData[0].taskData.push({
+				"checked": false,
+				"createdAt": Date.now(),
+				"subtaskName": dialogContent.subtaskName
+			})];
+			setData(handler);
+			onAuthStateChanged(auth, async user => {
+				if (user) {
+					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
+				}
+			})
+		}
 	}
+
 	const del = () => {
-		console.log('Delete to ' + loc);
+		console.log('Delete a ' + loc + ' at ' + index);
+		if (loc === 'subtask') {
+			let xloc = index.split(', ');
+			console.log(xloc);
+			let handler = [...data, data[0].data[0].sectionData[0].taskData.splice(xloc[2], 1)];
+			setData(handler);
+			onAuthStateChanged(auth, async user => {
+				if (user) {
+					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
+				}
+			})
+		}
 	}
 	const mark = () => {
 		console.log('Mark to ' + loc);
@@ -19,7 +71,7 @@ export default function StyledSpeedDialComponent({ loc, index, folderId }) {
 	const actions = [
 		{ icon: <Check />, name: 'Mark', method: mark },
 		{ icon: <DeleteOutline />, name: 'Delete', method: del },
-		{ icon: <Add />, name: 'Add', method: add },
+		{ icon: <Add />, name: 'Add', method: handleClickOpen },
 	];
 	
 	const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
@@ -28,8 +80,9 @@ export default function StyledSpeedDialComponent({ loc, index, folderId }) {
 	}));
 
   return (
+		<React.Fragment>
 		<StyledSpeedDial
-			ariaLabel="SpeedDial playground example"
+			ariaLabel="Speeddial"
 			icon={<SpeedDialIcon openIcon={<ArrowRight /> } icon={<ArrowLeft />} />}
 			direction={'left'}
 			FabProps={{
@@ -64,5 +117,30 @@ export default function StyledSpeedDialComponent({ loc, index, folderId }) {
 				/>
 			))}
 		</StyledSpeedDial>
+		<Dialog open={open} onClose={handleClose} fullWidth PaperProps={{
+			variant: 'outlined',
+			elevation: 0
+		}}>
+        <DialogTitle>Add a subtask</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            type="text"
+            fullWidth
+            variant="standard"
+						name={loc}
+						value={dialogContent.subtaskName}
+						onChange={handleDialogSubtask}
+						autoComplete='off'
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button color='error' onClick={handleClose}>Cancel</Button>
+          <Button onClick={add}>Add</Button>
+        </DialogActions>
+      </Dialog>
+		</React.Fragment>
   );
 }
