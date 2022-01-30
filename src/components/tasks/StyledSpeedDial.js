@@ -10,6 +10,7 @@ import { db } from '../../firebase/firebase-config';
 
 export default function StyledSpeedDialComponent({ loc, index, folderId, data, setData }) {
 	const [open, setOpen] = React.useState(false);
+	console.log(data);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -72,7 +73,7 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 		let xloc = index.split(', ');
 		if (loc === 'subtask') {
 			console.log(xloc);
-			let handler = [...data, data[0].data[xloc[0]].sectionData.splice(xloc[1], 1)];
+			let handler = [...data, data[0].data[xloc[0]].sectionData[xloc[1]].taskData.splice(xloc[2], 1)];
 			setData(handler);
 			onAuthStateChanged(auth, async user => {
 				if (user) {
