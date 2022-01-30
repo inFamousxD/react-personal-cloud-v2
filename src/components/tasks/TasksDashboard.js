@@ -21,7 +21,7 @@ const TasksDashboard = () => {
 			let folderNamesHandler = [];
 			docRef.docs.forEach(doc => {
 				dataHandler.push(doc.data());
-				folderNamesHandler.push(doc.data().folderName);
+				folderNamesHandler.push({folderName: doc.data().folderName, folderId: doc.id});
 			})
 
 			setData(dataHandler);
@@ -36,8 +36,8 @@ const TasksDashboard = () => {
 	})
 
 	return loading ? <Spinner /> : <div style={{ width: '95%', height: '84vh' }}>
-		<Typography sx={{ color: 'text.primary', ml: 1 }} variant='h6'>{currentFolder}</Typography>
-		<TasksFolderContents data={data.filter(data => { return data.folderName === currentFolder })}/>
+		<Typography sx={{ color: 'text.primary', ml: 1 }} variant='h6'>{currentFolder.folderName}</Typography>
+		<TasksFolderContents data={data.filter(data => { return data.folderName === currentFolder.folderName })} folder={currentFolder}/>
 	</div>;
 };
 
