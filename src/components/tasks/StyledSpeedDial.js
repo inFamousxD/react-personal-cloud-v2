@@ -3,11 +3,10 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { Add, ArrowLeft, ArrowRight, Check, DeleteOutline } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, SpeedDialIcon, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, SpeedDialIcon, TextField } from '@mui/material';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase-config';
-import { Box } from '@mui/system';
 
 export default function StyledSpeedDialComponent({ loc, index, folderId, data, setData }) {
 	const [open, setOpen] = React.useState(false);
