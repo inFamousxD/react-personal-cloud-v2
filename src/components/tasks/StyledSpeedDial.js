@@ -47,6 +47,7 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 				}
 			})
 		}
+		handleClose();
 	}
 
 	const del = () => {
