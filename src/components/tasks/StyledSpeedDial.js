@@ -10,7 +10,6 @@ import { db } from '../../firebase/firebase-config';
 
 export default function StyledSpeedDialComponent({ loc, index, folderId, data, setData }) {
 	const [open, setOpen] = React.useState(false);
-	console.log(data);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -45,7 +44,7 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 				"subtaskName": dialogContent.subtaskName
 			})];
 			setData(handler);
-			setDialogContent({...dialogContent, [dialogContent.subtaskName]: ''})
+			setDialogContent({...dialogContent, subtaskName: ''})
 			onAuthStateChanged(auth, async user => {
 				if (user) {
 					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
@@ -58,7 +57,7 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 				"taskName": dialogContent.taskName
 			})];
 			setData(handler);
-			setDialogContent({...dialogContent, [dialogContent.taskName]: ''})
+			setDialogContent({...dialogContent, taskName: ''})
 			onAuthStateChanged(auth, async user => {
 				if (user) {
 					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
