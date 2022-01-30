@@ -10,7 +10,6 @@ import { db } from '../../firebase/firebase-config';
 
 export default function StyledSpeedDialComponent({ loc, index, folderId, data, setData }) {
 	const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -29,18 +28,36 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 		setDialogContent({...dialogContent, subtaskName: e.target.value});
 	}
 
+	const handleDialogTask = (e) => {
+		setDialogContent({...dialogContent, taskName: e.target.value});
+	}
+
 	const auth = getAuth();
 	const add = () => {
 		console.log('Add to ' + loc);
-
+		let xloc = index.split(', ');
 		// add a new subtask
 		if (loc === 'task') {
-			let handler = [...data, data[0].data[0].sectionData[0].taskData.push({
+			let handler = [...data, data[0].data[xloc[0]].sectionData[xloc[1]].taskData.push({
 				"checked": false,
 				"createdAt": Date.now(),
 				"subtaskName": dialogContent.subtaskName
 			})];
 			setData(handler);
+			setDialogContent({...dialogContent, [dialogContent.subtaskName]: ''})
+			onAuthStateChanged(auth, async user => {
+				if (user) {
+					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
+				}
+			})
+		} else if (loc === 'section') {
+			let handler = [...data, data[0].data[xloc[0]].sectionData.push({
+				"taskData": [],
+				"createdAt": Date.now(),
+				"taskName": dialogContent.taskName
+			})];
+			setData(handler);
+			setDialogContent({...dialogContent, [dialogContent.taskName]: ''})
 			onAuthStateChanged(auth, async user => {
 				if (user) {
 					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
@@ -52,10 +69,19 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 
 	const del = () => {
 		console.log('Delete a ' + loc + ' at ' + index);
+		let xloc = index.split(', ');
 		if (loc === 'subtask') {
-			let xloc = index.split(', ');
 			console.log(xloc);
-			let handler = [...data, data[0].data[0].sectionData[0].taskData.splice(xloc[2], 1)];
+			let handler = [...data, data[0].data[xloc[0]].sectionData.splice(xloc[1], 1)];
+			setData(handler);
+			onAuthStateChanged(auth, async user => {
+				if (user) {
+					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
+				}
+			})
+		} else if (loc === 'task') {
+			console.log(xloc);
+			let handler = [...data, data[0].data[xloc[0]].sectionData.splice(xloc[1], 1)];
 			setData(handler);
 			onAuthStateChanged(auth, async user => {
 				if (user) {
@@ -117,7 +143,7 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 				/>
 			))}
 		</StyledSpeedDial>
-		<Dialog open={open} onClose={handleClose} fullWidth PaperProps={{
+		{ loc === 'task' ? <Dialog open={open} onClose={handleClose} fullWidth PaperProps={{
 			variant: 'outlined',
 			elevation: 0
 		}}>
@@ -130,7 +156,7 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
             type="text"
             fullWidth
             variant="standard"
-						name={loc}
+						name={'subtask'}
 						value={dialogContent.subtaskName}
 						onChange={handleDialogSubtask}
 						autoComplete='off'
@@ -140,7 +166,31 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
           <Button color='error' onClick={handleClose}>Cancel</Button>
           <Button onClick={add}>Add</Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> :
+			<Dialog open={open} onClose={handleClose} fullWidth PaperProps={{
+			variant: 'outlined',
+			elevation: 0
+		}}>
+        <DialogTitle>Add a task</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            type="text"
+            fullWidth
+            variant="standard"
+						name={'task'}
+						value={dialogContent.taskName}
+						onChange={handleDialogTask}
+						autoComplete='off'
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button color='error' onClick={handleClose}>Cancel</Button>
+          <Button onClick={add}>Add</Button>
+        </DialogActions>
+      </Dialog>}
 		</React.Fragment>
   );
 }
