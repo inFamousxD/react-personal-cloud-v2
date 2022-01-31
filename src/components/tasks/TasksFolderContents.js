@@ -158,11 +158,11 @@ export default function TasksFolderContents({ data, setData, folder }) {
   return (
     <TreeView
       aria-label="customized"
-			defaultExpanded={['section0']}
+			// defaultExpanded={['section0']}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
-      sx={{ height: 'inherit', flexGrow: 1, width: '100%', overflowY: 'auto', color: 'text.secondary' }}
+      sx={{ height: 'inherit', flexGrow: 1, width: '100%', overflowY: 'auto', color: 'text.secondary', mb: '20vh' }}
     >
 			{
 				data[0].data.map((section, sectionIndex) => {
