@@ -29,7 +29,7 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
     selected,
     focused,
     handleExpansion,
-    // handleSelection,
+    handleSelection,
     preventSelection,
   } = useTreeItem(nodeId);
 
@@ -43,9 +43,9 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
     handleExpansion(event);
   };
 
-  // const handleSelectionClick = (event) => {
-  //   handleSelection(event);
-  // };
+  const handleSelectionClick = (event) => {
+    handleSelection(event);
+  };
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -64,7 +64,7 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
         {icon}
       </div>
       <Typography
-        onClick={handleExpansionClick}
+        onClick={handleSelectionClick}
         component="div"
         className={classes.label}
       >
@@ -169,21 +169,21 @@ export default function TasksFolderContents({ data, setData, folder }) {
 					return <StyledTreeItem key={`section${sectionIndex}`} 
 										nodeId={`section${sectionIndex}`} 
 										label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
-														<Typography color={'text.secondary'}>{section.sectionName}</Typography>
+														<Typography color={'text.secondary'}>{section.sectionName.substring(0, 30)}</Typography>
 														<StyledSpeedDial loc={'section'} index={sectionIndex + ''} setData={setData} data={data} folderId={folder.folderId}/>
 													</Box>}>
 						{section.sectionData.map((task, taskIndex) => {
 							return <StyledTreeItem key={`task${sectionIndex}${taskIndex}`} 
 												nodeId={`task${sectionIndex}${taskIndex}`} 
 												label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
-																<Typography color={'text.secondary'}>{task.taskName}</Typography>
+																<Typography color={'text.secondary'}>{task.taskName.substring(0, 30)}</Typography>
 																<StyledSpeedDial loc={'task'} index={sectionIndex + ', ' + taskIndex} setData={setData} data={data} folderId={folder.folderId}/>
 															</Box>}>
 								{task.taskData.map((subtask, subtaskIndex) => {
 									return <StyledTreeItem key={`subtask${sectionIndex}${subtaskIndex}${taskIndex}`} 
 														nodeId={`subtask${sectionIndex}${subtaskIndex}${taskIndex}`} 
 														label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
-																		<Typography color={'text.secondary'}>{subtask.subtaskName}</Typography>
+																		<Typography color={'text.secondary'}>{subtask.subtaskName.substring(0, 30)}</Typography>
 																		<StyledSpeedDial loc={'subtask'} index={sectionIndex + ', ' + taskIndex + ', ' + subtaskIndex} setData={setData} data={data} folderId={folder.folderId}/>
 																	</Box>} />
 								})}
