@@ -61,12 +61,15 @@ export default function ToggleColorMode() {
   const [mode, setMode] = React.useState('dark');
 	const [accent, setAccent] = React.useState('#4CAF50');
 
-	const auth = getAuth();
-	onAuthStateChanged(auth, async user => {
-		const docRef = await getDoc(doc(db, "users", user.uid));
-		setMode(docRef.data().colourMode);
-		setAccent(docRef.data().accent);
-	})
+	React.useEffect(() => {
+		const auth = getAuth();
+		onAuthStateChanged(auth, async user => {
+			const docRef = await getDoc(doc(db, "users", user.uid));
+			setMode(docRef.data().colourMode);
+			setAccent(docRef.data().accent);
+		})
+	}, [])
+
 
   const theme = React.useMemo(
     () =>

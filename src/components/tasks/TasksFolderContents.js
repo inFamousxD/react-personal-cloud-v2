@@ -158,7 +158,7 @@ export default function TasksFolderContents({ data, setData, folder }) {
   return (
     <TreeView
       aria-label="customized"
-			// defaultExpanded={['section0']}
+			defaultExpanded={['section0']}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
