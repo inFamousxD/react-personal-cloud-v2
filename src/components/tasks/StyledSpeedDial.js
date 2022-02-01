@@ -88,6 +88,15 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
 				}
 			})
+		} else if (loc === 'section') {
+			console.log(xloc);
+			let handler = [...data, data[0].data.splice(xloc[0], 1)];
+			setData(handler);
+			onAuthStateChanged(auth, async user => {
+				if (user) {
+					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
+				}
+			})
 		}
 	}
 	const mark = () => {
