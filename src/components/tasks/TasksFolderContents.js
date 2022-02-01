@@ -156,7 +156,7 @@ export default function TasksFolderContents({ data, setData, folder }) {
 		<TaskSpeedDial setData={setData} folderId={folder.folderId} data={data} />
 		<TreeView
 			aria-label="customized"
-			defaultExpanded={['section0']}
+			defaultExpanded={['section0', 'section1', 'section2']}
 			defaultCollapseIcon={<MinusSquare />}
 			defaultExpandIcon={<PlusSquare />}
 			defaultEndIcon={<CloseSquare />}
