@@ -160,7 +160,7 @@ export default function TasksFolderContents({ data, setData, folder }) {
 			defaultCollapseIcon={<MinusSquare />}
 			defaultExpandIcon={<PlusSquare />}
 			defaultEndIcon={<CloseSquare />}
-			sx={{ height: 'inherit', flexGrow: 1, width: '100%', overflowY: 'auto', overflowX: 'hidden', color: 'text.secondary', mb: '20vh' }}
+			sx={{ height: 'inherit', flexGrow: 1, width: '100%', overflowY: 'auto', overflowX: 'hidden', color: 'text.secondary', paddingBottom: '20vh' }}
 		>
 			{
 				data[0].data.map((section, sectionIndex) => {
