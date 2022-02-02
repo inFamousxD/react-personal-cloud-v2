@@ -1,14 +1,14 @@
 import * as React from 'react';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import { Add, ArrowLeft, ArrowRight, Check, DeleteOutline } from '@mui/icons-material';
+import { Add, ArrowLeft, ArrowRight, Check, Close, DeleteOutline } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, SpeedDialIcon, TextField } from '@mui/material';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase-config';
 
-export default function StyledSpeedDialComponent({ loc, index, folderId, data, setData }) {
+export default function StyledSpeedDialComponent({ loc, index, folderId, data, setData, checked }) {
 	const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,7 +34,6 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 
 	const auth = getAuth();
 	const add = () => {
-		console.log('Add to ' + loc);
 		let xloc = index.split(', ');
 		// add a new subtask
 		if (loc === 'task') {
@@ -68,10 +67,8 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 	}
 
 	const del = () => {
-		console.log('Delete a ' + loc + ' at ' + index);
 		let xloc = index.split(', ');
 		if (loc === 'subtask') {
-			console.log(xloc);
 			let handler = [...data, data[0].data[xloc[0]].sectionData[xloc[1]].taskData.splice(xloc[2], 1)];
 			setData(handler);
 			onAuthStateChanged(auth, async user => {
@@ -80,7 +77,6 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 				}
 			})
 		} else if (loc === 'task') {
-			console.log(xloc);
 			let handler = [...data, data[0].data[xloc[0]].sectionData.splice(xloc[1], 1)];
 			setData(handler);
 			onAuthStateChanged(auth, async user => {
@@ -89,7 +85,6 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 				}
 			})
 		} else if (loc === 'section') {
-			console.log(xloc);
 			let handler = [...data, data[0].data.splice(xloc[0], 1)];
 			setData(handler);
 			onAuthStateChanged(auth, async user => {
@@ -100,11 +95,30 @@ export default function StyledSpeedDialComponent({ loc, index, folderId, data, s
 		}
 	}
 	const mark = () => {
-		console.log('Mark to ' + loc);
+		let xloc = index.split(', ');
+		if (loc === 'subtask') {
+			let handler = [...data];
+			handler[0].data[xloc[0]].sectionData[xloc[1]].taskData[xloc[2]].checked = !(handler[0].data[xloc[0]].sectionData[xloc[1]].taskData[xloc[2]].checked);
+			setData(handler);
+			onAuthStateChanged(auth, async user => {
+				if (user) {
+					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
+				}
+			})
+		} else if (loc === 'task') {
+			let handler = [...data];
+			handler[0].data[xloc[0]].sectionData[xloc[1]].checked = !(handler[0].data[xloc[0]].sectionData[xloc[1]].checked);
+			setData(handler);
+			onAuthStateChanged(auth, async user => {
+				if (user) {
+					await updateDoc(doc(db, "users", user.uid, "tasks", folderId), handler[0]);
+				}
+			})
+		}
 	}
 
 	const actions = [
-		{ icon: <Check />, name: 'Mark', method: mark },
+		{ icon: checked ? <Close /> : <Check />, name: 'Mark', method: mark },
 		{ icon: <DeleteOutline />, name: 'Delete', method: del },
 		{ icon: <Add />, name: 'Add', method: handleClickOpen },
 	];

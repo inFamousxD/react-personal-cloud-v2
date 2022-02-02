@@ -174,15 +174,15 @@ export default function TasksFolderContents({ data, setData, folder }) {
 							return <StyledTreeItem key={`task${sectionIndex}${taskIndex}`} 
 												nodeId={`task${sectionIndex}${taskIndex}`} 
 												label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
-																<Typography color={'text.secondary'}>{task.taskName.substring(0, 30)}</Typography>
-																<StyledSpeedDial loc={'task'} index={sectionIndex + ', ' + taskIndex} setData={setData} data={data} folderId={folder.folderId}/>
+																<Typography sx={{ textDecoration: task.checked ? 'line-through' : 'none', opacity: task.checked ? '0.5' : '1' }} color={'text.secondary'}>{task.taskName.substring(0, 30)}</Typography>
+																<StyledSpeedDial checked={task.checked} loc={'task'} index={sectionIndex + ', ' + taskIndex} setData={setData} data={data} folderId={folder.folderId}/>
 															</Box>}>
 								{task.taskData.map((subtask, subtaskIndex) => {
 									return <StyledTreeItem key={`subtask${sectionIndex}${subtaskIndex}${taskIndex}`} 
 														nodeId={`subtask${sectionIndex}${subtaskIndex}${taskIndex}`} 
 														label={<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5.25vh' }}>
-																		<Typography color={'text.secondary'}>{subtask.subtaskName.substring(0, 30)}</Typography>
-																		<StyledSpeedDial loc={'subtask'} index={sectionIndex + ', ' + taskIndex + ', ' + subtaskIndex} setData={setData} data={data} folderId={folder.folderId}/>
+																		<Typography sx={{ textDecoration: subtask.checked ? 'line-through' : 'none', opacity: subtask.checked ? '0.5' : '1' }} color={'text.secondary'}>{subtask.subtaskName.substring(0, 30)}</Typography>
+																		<StyledSpeedDial checked={subtask.checked} loc={'subtask'} index={sectionIndex + ', ' + taskIndex + ', ' + subtaskIndex} setData={setData} data={data} folderId={folder.folderId}/>
 																	</Box>} />
 								})}
 							</StyledTreeItem>
